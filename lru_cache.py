@@ -1,4 +1,4 @@
-from .lib.linked_list import DoublyLinkedList
+from datastructures.linked_list import DoublyLinkedList
 
 
 class LruCache:
@@ -11,6 +11,7 @@ class LruCache:
         node = self._location.get(key)
 
         if node:
+            self._dLinkList.move_to_tail(node)
             return node.data
 
         return None

@@ -26,17 +26,10 @@ class DoublyLinkedList:
         self.tail = None
         self.size = 0
 
-    def __repr__(self):
-        """
-        Return a string representation of the list.
-        Takes O(n) time.
-        """
-        nodes = []
-        curr = self.head
-        while curr:
-            nodes.append(repr(curr))
-            curr = curr.next
-        return "[" + ", ".join(nodes) + "]"
+    def move_to_tail(self, node):
+        if node is not self.tail:
+            self.remove_elem(node)
+            self.prepend(node.key, node.data)
 
     def prepend(self, key, data):
         """
@@ -79,6 +72,9 @@ class DoublyLinkedList:
             node.next.prev = node.prev
         if node is self.head:
             self.head = node.next
+        if node is self.tail:
+            self.tail = node.prev
+
         node.prev = None
         node.next = None
         self.size -= 1

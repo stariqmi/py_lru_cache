@@ -12,9 +12,6 @@ class DListNode:
         self.prev = prev
         self.next = next
 
-    def __repr__(self):
-        return repr(self.data)
-
 
 class DoublyLinkedList:
     def __init__(self):
@@ -26,7 +23,7 @@ class DoublyLinkedList:
         self.tail = None
         self.size = 0
 
-    def move_to_head(self, node):
+    def move_to_front(self, node):
         if node is not self.head:
             self.remove_elem(node)
             self.prepend(node.key, node.data)

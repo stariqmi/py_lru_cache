@@ -1,9 +1,11 @@
+import os
+
 from flask import Flask, request, abort, jsonify
 from cache.lru_cache import LruCache
 
 app = Flask(__name__)
 
-lru_cache = LruCache(10)
+lru_cache = LruCache(int(os.getenv("CACHE_CAPACITY", 10)))
 
 
 @app.route("/<key>", methods=["GET"])

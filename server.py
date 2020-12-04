@@ -30,3 +30,22 @@ def insert_into_cache():
 def delete_from_cache(key):
     lru_cache.delete(key)
     return jsonify(success=True)
+
+
+@app.route("/backup", methods=["PUT"])
+def backup():
+    lru_cache.backup()
+    return jsonify(success=True)
+
+
+@app.route("/flush", methods=["PUT"])
+def flush():
+    lru_cache.flush()
+    return jsonify(success=True)
+
+
+@app.route("/restore", methods=["PUT"])
+def restore():
+    data = request.get_json(force=True)
+    lru_cache.restore(str(data["file_path"]))
+    return jsonify(success=True)

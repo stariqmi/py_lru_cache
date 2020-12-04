@@ -99,3 +99,17 @@ def test_flush_resets_hash(full_cache):
     full_cache.flush()
 
     assert full_cache._hash_map is not old_hash_map
+
+
+def test_backup_restore(full_cache):
+    file_path = "/tmp/backup.test.p"
+
+    capacity = full_cache._capacity
+    full_cache.backup(file_path)
+    full_cache.flush()
+    full_cache.restore(file_path)
+
+    assert full_cache._capacity == capacity
+    assert full_cache.get(1) == 1
+    assert full_cache.get(2) == 2
+    assert full_cache.get(3) == 3

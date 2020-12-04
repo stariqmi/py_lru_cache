@@ -72,3 +72,11 @@ def test_delete_used(full_cache):
     full_cache.delete(2)
 
     assert full_cache.get(2) == None
+
+
+def test_flush(full_cache):
+    full_cache.flush()
+
+    assert full_cache.get(1) == None
+    assert full_cache.get(2) == None
+    assert full_cache.get(3) == None

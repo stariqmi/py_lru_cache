@@ -37,3 +37,6 @@ class LruCache:
             self._dLinkList.remove_elem(node)
 
         return True
+
+    def flush(self):
+        self._location = {}

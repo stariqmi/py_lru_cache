@@ -18,7 +18,7 @@ def get_from_cache(key):
     return resp
 
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST", "PUT"])
 def insert_into_cache():
     data = request.get_json(force=True)
     lru_cache.insert(str(data["key"]), data["value"])

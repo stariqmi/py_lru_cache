@@ -26,8 +26,8 @@ class DoublyLinkedList:
         self.tail = None
         self.size = 0
 
-    def move_to_tail(self, node):
-        if node is not self.tail:
+    def move_to_head(self, node):
+        if node is not self.head:
             self.remove_elem(node)
             self.prepend(node.key, node.data)
 
@@ -39,27 +39,13 @@ class DoublyLinkedList:
         new_head = DListNode(key=key, data=data, next=self.head)
         if self.head:
             self.head.prev = new_head
+        else:
+            self.tail = new_head
+
         self.head = new_head
         self.size += 1
 
         return new_head
-
-    def append(self, key, data):
-        """
-        Insert a new element at the end of the list.
-        Modified: Takes O(1) time.
-        """
-        if not self.head:
-            self.head = DListNode(key=key, data=data)
-            self.tail = self.head
-            self.size += 1
-            return self.head
-
-        curr = self.tail
-        curr.next = DListNode(key=key, data=data, prev=curr)
-        self.tail = curr.next
-        self.size += 1
-        return curr.next
 
     def remove_elem(self, node):
         """

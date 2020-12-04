@@ -11,19 +11,19 @@ class LruCache:
         node = self._location.get(key)
 
         if node:
-            self._dLinkList.move_to_tail(node)
+            self._dLinkList.move_to_head(node)
             return node.data
 
         return None
 
     def insert(self, key, value):
         if self._dLinkList.size == self._capacity:
-            head = self._dLinkList.head
-            self._dLinkList.remove_elem(head)
+            tail = self._dLinkList.tail
+            self._dLinkList.remove_elem(tail)
 
-            del self._location[head.key]
+            del self._location[tail.key]
 
-        node = self._dLinkList.append(key, value)
+        node = self._dLinkList.prepend(key, value)
 
         self._location[key] = node
 

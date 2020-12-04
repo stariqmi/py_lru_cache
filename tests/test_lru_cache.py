@@ -33,6 +33,12 @@ def test_get(full_cache):
     assert full_cache.get(1) == 1
 
 
+def test_get_moves_key_to_head(full_cache):
+    assert full_cache._dLinkList.tail.data == 1
+    assert full_cache.get(1) == 1
+    assert full_cache._dLinkList.head.data == 1
+
+
 def test_get_not_found(empty_cache):
     assert empty_cache.get(1) == None
 
@@ -48,3 +54,21 @@ def test_delete_not_found(empty_cache):
     empty_cache.delete(1)
 
     assert empty_cache.get(1) == None
+
+
+def test_delete_most_recent_used(full_cache):
+    full_cache.delete(3)
+
+    assert full_cache.get(3) == None
+
+
+def test_delete_least_recent_used(full_cache):
+    full_cache.delete(1)
+
+    assert full_cache.get(1) == None
+
+
+def test_delete_used(full_cache):
+    full_cache.delete(2)
+
+    assert full_cache.get(2) == None

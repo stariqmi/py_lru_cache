@@ -68,17 +68,6 @@ class DoublyLinkedList:
         self.size += 1
         return curr.next
 
-    def find(self, key):
-        """
-        Search for the first element with `data` matching
-        `key`. Return the element or `None` if not found.
-        Takes O(n) time.
-        """
-        curr = self.head
-        while curr and curr.data != key:
-            curr = curr.next
-        return curr  # Will be None if not found
-
     def remove_elem(self, node):
         """
         Unlink an element from the list.
@@ -93,17 +82,3 @@ class DoublyLinkedList:
         node.prev = None
         node.next = None
         self.size -= 1
-
-    def reverse(self):
-        """
-        Reverse the list in-place.
-        Takes O(n) time.
-        """
-        curr = self.head
-        prev_node = None
-        while curr:
-            prev_node = curr.prev
-            curr.prev = curr.next
-            curr.next = prev_node
-            curr = curr.prev
-        self.head = prev_node.prev

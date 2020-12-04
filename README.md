@@ -23,6 +23,8 @@ In addition to the above, the following administrative operations are also suppo
 
 ## Potential Improvments
 - Automatic and continuous persistence (for disaster recovery or restoring the cache on server restart)
-- Logging - this can also server the purpose of a commit log, both for restoring data and handling concurrency issues
+- Expiration policy and it's enforcement
+- Logging - this can also serve the purpose of a commit log, both for restoring data and handling concurrency issues
 - Support for different eviction policies e.g. Least Frequently Used (LFU)
-- RPC interface to call the different operations instead of the HTTP e.g. via gPRC
+- RPC interface to call the different operations instead of the HTTP API e.g. via gPRC
+

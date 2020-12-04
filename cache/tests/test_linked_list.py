@@ -1,6 +1,6 @@
 import pytest
 
-from datastructures.linked_list import DoublyLinkedList
+from cache.datastructures.linked_list import DoublyLinkedList
 
 
 @pytest.fixture

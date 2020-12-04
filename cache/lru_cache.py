@@ -1,4 +1,4 @@
-from datastructures.linked_list import DoublyLinkedList
+from .datastructures.linked_list import DoublyLinkedList
 
 
 class LruCache:
@@ -16,7 +16,16 @@ class LruCache:
 
         return None
 
+    def update(self, key, value):
+        node = self._hash_map.get(key)
+
+        node.data = value
+        self._doubly_linked_list.move_to_front(node)
+
     def insert(self, key, value):
+        if key in self._hash_map:
+            return self.update(key, value)
+
         if self._doubly_linked_list.size == self._capacity:
             tail = self._doubly_linked_list.tail
             self._doubly_linked_list.remove_elem(tail)

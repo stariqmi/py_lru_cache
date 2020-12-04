@@ -1,7 +1,7 @@
 from unittest.mock import patch
 import pytest
-from lru_cache import LruCache
-from datastructures.linked_list import DoublyLinkedList
+from cache.lru_cache import LruCache
+from cache.datastructures.linked_list import DoublyLinkedList
 
 
 @pytest.fixture
@@ -37,6 +37,17 @@ def test_get(full_cache):
 @patch.object(DoublyLinkedList, "move_to_front")
 def test_get_moves_key_to_front(mock, full_cache):
     full_cache.get(1)
+    mock.assert_called_once()
+
+
+def test_update(full_cache):
+    full_cache.update(3, 4)
+    assert full_cache.get(3) == 4
+
+
+@patch.object(LruCache, "update")
+def test_insert_existing_updates_only(mock, full_cache):
+    full_cache.insert(1, 10)
     mock.assert_called_once()
 
 
